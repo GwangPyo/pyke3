@@ -72,13 +72,11 @@ class fc_rule(rule):
         super(fc_rule, self).__init__(name, rule_base, patterns)
         rule_base.add_fc_rule(self)
         self.rule_fn = rule_fn
-        self.foreach_facts = foreach_facts # (kb_name, fact_name, arg_pats,
-                                           #  multi_match?)...
+        self.foreach_facts = foreach_facts  # (kb_name, fact_name, arg_pats, multi_match?)...
         self.ran = False
 
     def register_rule(self):
-        for i, (kb_name, fact_name, arg_patterns, multi_match) \
-         in enumerate(self.foreach_facts):
+        for i, (kb_name, fact_name, arg_patterns, multi_match) in enumerate(self.foreach_facts):
             self.rule_base.engine.get_kb(kb_name, fact_base.fact_base) \
                 .add_fc_rule_ref(fact_name, self, i)
 
@@ -94,10 +92,10 @@ class fc_rule(rule):
             arg_patterns = self.foreach_facts[n][2]
             if len(fact_args) == len(arg_patterns):
                 context = contexts.simple_context()
-                if all(itertools.imap(lambda pat, arg:
-                                          pat.match_data(context, context, arg),
-                                      arg_patterns,
-                                      fact_args)):
+                if all(map(
+                        lambda pat, arg: pat.match_data(context, context, arg),
+                        arg_patterns,
+                        fact_args)):
                     self.rule_base.num_fc_rules_rerun += 1
                     if self.foreach_facts[n][3]:
                         self.rule_fn(self)
@@ -107,4 +105,3 @@ class fc_rule(rule):
 
     def foreach_patterns(self, foreach_index):
         return self.foreach_facts[foreach_index][2]
-

@@ -24,7 +24,10 @@
 import itertools
 from pyke import knowledge_base
 
-class StopProof(Exception): pass
+
+class StopProof(Exception):
+    pass
+
 
 class stopIteratorContext(object):
     def __init__(self, rule_base, iterator_context):
@@ -37,21 +40,28 @@ class stopIteratorContext(object):
     def __exit__(self, type, value, tb):
         self.context.__exit__(type, value, tb)
 
+
 class stopIterator(object):
     def __init__(self, rule_base, iterator):
         self.rule_base = rule_base
         self.iterator = iter(iterator)
 
-    def __iter__(self): return self
+    def __iter__(self):
+        return self
 
-    def next(self):
-        if self.iterator:
+    def __next__(self):
+
+        if self.iterator is not None:
             try:
-                return self.iterator.next()
+                return next(self.iterator)
             except StopProof:
                 self.iterator = None
                 self.rule_base.num_bc_rule_failures += 1
         raise StopIteration
+
+    # Python 2 호환
+    next = __next__
+
 
 class chain_context(object):
     def __init__(self, outer_it):
@@ -60,32 +70,41 @@ class chain_context(object):
     def __enter__(self):
         return itertools.chain.from_iterable(self.outer_it)
 
-    def __exit__(self, type, value, tb): self.outer_it.close()
+    def __exit__(self, type, value, tb):
+        self.outer_it.close()
+
 
 class outer_iterable(object):
     def __init__(self, outer_it):
         self.outer_it = iter(outer_it)
         self.inner_it = None
 
-    def __iter__(self): return self
+    def __iter__(self):
+        return self
 
     def close(self):
         if hasattr(self.inner_it, '__exit__'):
             self.inner_it.__exit__(None, None, None)
-        elif hasattr(self.inner_it, 'close'): self.inner_it.close()
-        if hasattr(self.outer_it, 'close'): self.outer_it.close()
+        elif hasattr(self.inner_it, 'close'):
+            self.inner_it.close()
+        if hasattr(self.outer_it, 'close'):
+            self.outer_it.close()
 
-    def next(self):
-        ans = self.outer_it.next()
+    def __next__(self):
+        ans = next(self.outer_it)
         if hasattr(ans, '__enter__'):
             self.inner_it = ans
             return ans.__enter__()
-        ans = iter(ans)
-        self.inner_it = ans
-        return ans
+        ans_iter = iter(ans)
+        self.inner_it = ans_iter
+        return ans_iter
+
+    # Python 2 호환
+    next = __next__
+
 
 class rule_base(knowledge_base.knowledge_base):
-    def __init__(self, engine, name, parent = None, exclude_list = ()):
+    def __init__(self, engine, name, parent=None, exclude_list=()):
         super(rule_base, self).__init__(engine, name, rule_list, False)
         if name in engine.rule_bases:
             raise AssertionError("rule_base %s already exists" % name)
@@ -96,7 +115,7 @@ class rule_base(knowledge_base.knowledge_base):
         self.fc_rules = []
         self.parent = parent
         self.exclude_set = frozenset(exclude_list)
-        self.rules = {}         # {name: rule}
+        self.rules = {}  # {name: rule}
 
     def add_fc_rule(self, fc_rule):
         if fc_rule.name in self.rules:
@@ -130,30 +149,35 @@ class rule_base(knowledge_base.knowledge_base):
     def derived_from(self, rb):
         parent = self.parent
         while parent:
-            if parent == rb: return True
+            if parent == rb:
+                return True
             parent = parent.parent
         return False
 
     def register_fc_rules(self, stop_at_rb):
         rb = self
         while rb is not stop_at_rb:
-            for fc_rule in rb.fc_rules: fc_rule.register_rule()
-            if not rb.parent: break
+            for fc_rule in rb.fc_rules:
+                fc_rule.register_rule()
+            if not rb.parent:
+                break
             rb = rb.parent
 
     def run_fc_rules(self, stop_at_rb):
         rb = self
         while rb is not stop_at_rb:
-            for fc_rule in rb.fc_rules: fc_rule.run()
-            if not rb.parent: break
+            for fc_rule in rb.fc_rules:
+                fc_rule.run()
+            if not rb.parent:
+                break
             rb = rb.parent
 
     def activate(self):
         current_rb = self.engine.knowledge_bases.get(self.root_name)
         if current_rb:
             assert self.derived_from(current_rb), \
-                   "%s.activate(): not derived from current rule_base, %s" % \
-                   (self.name, current_rb.name)
+                "%s.activate(): not derived from current rule_base, %s" % \
+                (self.name, current_rb.name)
         self.engine.knowledge_bases[self.root_name] = self
         self.register_fc_rules(current_rb)
         self.run_fc_rules(current_rb)
@@ -161,7 +185,8 @@ class rule_base(knowledge_base.knowledge_base):
     def reset(self):
         if self.root_name in self.engine.knowledge_bases:
             del self.engine.knowledge_bases[self.root_name]
-        for fc_rule in self.fc_rules: fc_rule.reset()
+        for fc_rule in self.fc_rules:
+            fc_rule.reset()
         self.num_fc_rules_triggered = 0
         self.num_fc_rules_rerun = 0
         self.num_prove_calls = 0
@@ -173,7 +198,8 @@ class rule_base(knowledge_base.knowledge_base):
         rule_base = self
         while True:
             rl = rule_base.entity_lists.get(goal_name)
-            if rl: yield rl
+            if rl:
+                yield rl
             if rule_base.parent and goal_name not in rule_base.exclude_set:
                 rule_base = rule_base.parent
             else:
@@ -181,34 +207,43 @@ class rule_base(knowledge_base.knowledge_base):
 
     def prove(self, bindings, pat_context, goal_name, patterns):
         self.num_prove_calls += 1
-        return stopIteratorContext(self,
-                   chain_context(
-                       rl.prove(bindings, pat_context, patterns)
-                       for rl in self.gen_rule_lists_for(goal_name)))
+        return stopIteratorContext(
+            self,
+            chain_context(
+                rl.prove(bindings, pat_context, patterns)
+                for rl in self.gen_rule_lists_for(goal_name)
+            )
+        )
 
     def print_stats(self, f):
         f.write("%s: %d fc_rules, %d triggered, %d rerun\n" %
                 (self.name, len(self.fc_rules), self.num_fc_rules_triggered,
                  self.num_fc_rules_rerun))
-        num_bc_rules = sum(rule_list.num_bc_rules()
-                             for rule_list in self.entity_lists.itervalues())
+        num_bc_rules = sum(
+            rule_list.num_bc_rules()
+            for rule_list in self.entity_lists.values()
+        )
         f.write("%s: %d bc_rules, %d goals, %d rules matched\n" %
                 (self.name, num_bc_rules, self.num_prove_calls,
                  self.num_bc_rules_matched))
         f.write("%s  %d successes, %d failures\n" %
                 (' ' * len(self.name), self.num_bc_rule_successes,
                  self.num_bc_rule_failures))
-        if self.parent: self.parent.print_stats(f)
+        if self.parent:
+            self.parent.print_stats(f)
 
     def trace(self, rule_name):
-        for rule_list in self.entity_lists.itervalues():
-            if rule_list.trace(rule_name): return
+        for rule_list in self.entity_lists.values():
+            if rule_list.trace(rule_name):
+                return
         raise KeyError("trace: rule %s not found" % rule_name)
 
     def untrace(self, rule_name):
-        for rule_list in self.entity_lists.itervalues():
-            if rule_list.untrace(rule_name): return
+        for rule_list in self.entity_lists.values():
+            if rule_list.untrace(rule_name):
+                return
         raise KeyError("untrace: rule %s not found" % rule_name)
+
 
 class rule_list(knowledge_base.knowledge_entity_list):
     def __init__(self, name):
@@ -225,8 +260,9 @@ class rule_list(knowledge_base.knowledge_entity_list):
             so that no bindings remain at StopIteration.
         """
         return chain_context(
-                   bc_rule.bc_fn(bc_rule, patterns, pat_context)
-                   for bc_rule in self.bc_rules)
+            bc_rule.bc_fn(bc_rule, patterns, pat_context)
+            for bc_rule in self.bc_rules
+        )
 
     def num_bc_rules(self):
         return len(self.bc_rules)
@@ -244,4 +280,3 @@ class rule_list(knowledge_base.knowledge_entity_list):
                 bc_rule.untrace()
                 return True
         return False
-

@@ -1,0 +1,12 @@
+=== 2to3 batch conversion start (2025-06-15 16:23:48) ===
+Root dir: /mnt/c/Users/necro/pyke3/pyke
+Logfile : /mnt/c/Users/necro/pyke3/pyke/2to3_logs/2to3_2025-06-15_162348.log
+
+[2to3] /mnt/c/Users/necro/pyke3/pyke/doc/examples/some_module.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: No files need to be modified.

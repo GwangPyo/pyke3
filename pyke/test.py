@@ -18,23 +18,26 @@
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
 
-from __future__ import with_statement
-import types
 from pyke import knowledge_engine, krb_traceback, pattern, contexts
 
-def parse(str):
-    str = str.strip()
-    if str[0] == '(': return parse_tuple(str[1:])
-    if str[0] in "0123456789.-+": return parse_number(str)
-    if str[0] in "\"'": return parse_string(str)
-    if str[0].isalpha() or str[0] in "_$*": return parse_identifier(str)
-    else: return parse_symbol(str)
+def parse(s):
+    s = s.strip()
+    if s[0] == '(':
+        return parse_tuple(s[1:])
+    if s[0] in "0123456789.-+":
+        return parse_number(s)
+    if s[0] in "\"'":
+        return parse_string(s)
+    if s[0].isalpha() or s[0] in "_$*":
+        return parse_identifier(s)
+    else:
+        return parse_symbol(s)
 
-def parse_number(str):
+def parse_number(s):
     '''
         >>> parse_number('123abc')
         (123, 'abc')
@@ -45,24 +48,25 @@ def parse_number(str):
         >>> parse_number('-1.23e-7abc')
         (-1.23e-07, 'abc')
     '''
-    for i in range(1, len(str)):
-        if str[i] not in "0123456789.-+e": break
-    return eval(str[:i]), str[i:]
+    for i in range(1, len(s)):
+        if s[i] not in "0123456789.-+e":
+            break
+    return eval(s[:i]), s[i:]
 
-def parse_string(str):
-    r'''
+def parse_string(s):
+    '''
         >>> parse_string("'hello' mom")
         ('hello', ' mom')
-        >>> parse_string(r'"hello\" mom"')
+        >>> parse_string(r'"hello\\" mom"')
         ('hello" mom', '')
     '''
-    quote = str[0]
-    end = str.index(quote, 1)
-    while str[end - 1] == '\\':
-        end = str.index(quote, end + 1)
-    return eval(str[:end + 1]), str[end + 1:]
+    quote = s[0]
+    end = s.index(quote, 1)
+    while s[end - 1] == '\\':
+        end = s.index(quote, end + 1)
+    return eval(s[:end + 1]), s[end + 1:]
 
-def parse_identifier(str):
+def parse_identifier(s):
     '''
         >>> parse_identifier("abc, def")
         ('abc', ', def')
@@ -79,18 +83,27 @@ def parse_identifier(str):
         >>> parse_identifier("None, 0")
         (None, ', 0')
     '''
-    if len(str) == 1: return str, ''
-    start = 2 if str.startswith('*$') else 1
-    for i in range(start, len(str)):
-        if not str[i].isalnum() and str[i] != '_': break
-    if str[0] == '*' and (i < 3 or str[1] != '$'): return parse_symbol(str)
-    if str[0] == '$' and i < 2: return parse_symbol(str)
-    if str[:i] == 'None': return None, str[i:]
-    if str[:i] == 'True': return True, str[i:]
-    if str[:i] == 'False': return False, str[i:]
-    return str[:i], str[i:]
+    if len(s) == 1:
+        return s, ''
+    start = 2 if s.startswith('*$') else 1
+    for i in range(start, len(s)):
+        if not s[i].isalnum() and s[i] != '_':
+            break
+    if s[0] == '*' and (i < 3 or s[1] != '$'):
+        return parse_symbol(s)
+    if s[0] == '$' and i < 2:
+        return parse_symbol(s)
+    token = s[:i]
+    rest = s[i:]
+    if token == 'None':
+        return None, rest
+    if token == 'True':
+        return True, rest
+    if token == 'False':
+        return False, rest
+    return token, rest
 
-def parse_symbol(str):
+def parse_symbol(s):
     '''
         >>> parse_symbol(", def")
         (',', ' def')
@@ -101,13 +114,14 @@ def parse_symbol(str):
         >>> parse_symbol("+]")
         ('+', ']')
     '''
-    if len(str) == 1: return str, ''
-    for i in range(1, len(str)):
-        if str[i].isspace() or str[i].isalnum() or str[i] in "\"'()[]{},;_`":
+    if len(s) == 1:
+        return s, ''
+    for i in range(1, len(s)):
+        if s[i].isspace() or s[i].isalnum() or s[i] in "\"'()[]{},;_`":
             break
-    return str[:i], str[i:]
+    return s[:i], s[i:]
 
-def parse_tuple(str):
+def parse_tuple(s):
     '''
         >>> parse_tuple("))")
         ((), ')')
@@ -117,13 +131,14 @@ def parse_tuple(str):
         (('a', ('b',), 'c'), '')
     '''
     ans = []
-    str = str.lstrip()
-    while str[0] != ')':
-        element, str = parse(str)
+    s = s.lstrip()
+    while s[0] != ')':
+        element, s = parse(s)
         ans.append(element)
-        str = str.lstrip()
-        if str[0] == ',': str = str[1:].lstrip()
-    return tuple(ans), str[1:]
+        s = s.lstrip()
+        if s[0] == ',':
+            s = s[1:].lstrip()
+    return tuple(ans), s[1:]
 
 def is_pattern(data):
     '''
@@ -139,15 +154,16 @@ def is_pattern(data):
         True
     '''
     if isinstance(data, tuple):
-        if data and is_rest_var(data[-1]): return True
-        return any(is_pattern(element) for element in data)
-    if isinstance(data, types.StringTypes) and len(data) > 1 and \
-       data[0] == '$' and (data[1].isalpha() or data[1] == '_'):
+        if data and is_rest_var(data[-1]):
+            return True
+        return any(is_pattern(elem) for elem in data)
+    if isinstance(data, str) and len(data) > 1 and data[0] == '$' \
+       and (data[1].isalpha() or data[1] == '_'):
         return True
     return False
 
 def is_rest_var(data):
-    r'''
+    '''
     >>> is_rest_var('foo')
     False
     >>> is_rest_var('$foo')
@@ -165,8 +181,9 @@ def is_rest_var(data):
     >>> is_rest_var('')
     False
     '''
-    return isinstance(data, types.StringTypes) and len(data) > 2 and \
-           data.startswith('*$') and (data[2].isalpha() or data[2] == '_')
+    return isinstance(data, str) and len(data) > 2 \
+           and data.startswith('*$') \
+           and (data[2].isalpha() or data[2] == '_')
 
 def as_pattern(data):
     if isinstance(data, tuple) and is_pattern(data):
@@ -176,14 +193,17 @@ def as_pattern(data):
                 rest_var = contexts.anonymous(name)
             else:
                 rest_var = contexts.variable(name)
-            return pattern.pattern_tuple(tuple(as_pattern(element)
-                                               for element in data[:-1]),
-                                         rest_var)
-        return pattern.pattern_tuple(tuple(as_pattern(element)
-                                           for element in data))
-    if isinstance(data, types.StringTypes) and is_pattern(data):
+            return pattern.pattern_tuple(
+                tuple(as_pattern(elem) for elem in data[:-1]),
+                rest_var
+            )
+        return pattern.pattern_tuple(
+            tuple(as_pattern(elem) for elem in data)
+        )
+    if isinstance(data, str) and is_pattern(data):
         name = data[1:]
-        if name[0] == '_': return contexts.anonymous(name)
+        if name[0] == '_':
+            return contexts.anonymous(name)
         return contexts.variable(name)
     return pattern.pattern_literal(data)
 
@@ -194,28 +214,34 @@ def init(*args, **kws):
     Engine = knowledge_engine.engine(*args, **kws)
     Did_init = True
 
-def eval_plan(globals, locals):
+def eval_plan(globals_, locals_):
     while True:
-        print
-        expr = raw_input("run plan: ").strip()
-        if not expr: break
-        ans = eval(expr, globals.copy(), locals.copy())
-        print "plan returned:", ans
+        print()
+        expr = input("run plan: ").strip()
+        if not expr:
+            break
+        ans = eval(expr, globals_.copy(), locals_.copy())
+        print("plan returned:", ans)
 
 def run(rule_bases_to_activate,
-        default_rb = None, init_fn = None, fn_to_run_plan = eval_plan,
-        plan_globals = {}):
-    if not Did_init: init()
+        default_rb=None, init_fn=None, fn_to_run_plan=eval_plan,
+        plan_globals=None):
+    if plan_globals is None:
+        plan_globals = {}
+    if not Did_init:
+        init()
 
     if not isinstance(rule_bases_to_activate, (tuple, list)):
         rule_bases_to_activate = (rule_bases_to_activate,)
 
-    if default_rb is None: default_rb = rule_bases_to_activate[0]
+    if default_rb is None:
+        default_rb = rule_bases_to_activate[0]
 
     while True:
-        print
-        goal_str = raw_input("goal: ")
-        if not goal_str: break
+        print()
+        goal_str = input("goal: ")
+        if not goal_str:
+            break
         goal, args_str = parse(goal_str)
         if goal == "trace":
             args = args_str.split()
@@ -233,28 +259,30 @@ def run(rule_bases_to_activate,
             continue
         args_str = args_str.strip()
         rb_name = default_rb
-        if args_str[0] == '.':
+        if args_str and args_str[0] == '.':
             rb_name = goal
             goal, args_str = parse(args_str[1:])
         args = parse(args_str)[0]
-        print "proving: %s.%s%s" % (rb_name, goal, args)
+        print(f"proving: {rb_name}.{goal}{tuple(args)}")
         goal_args = tuple(as_pattern(arg) for arg in args)
         Engine.reset()
-        if init_fn: init_fn(Engine)
+        if init_fn:
+            init_fn(Engine)
         context = contexts.simple_context()
         try:
             Engine.activate(*rule_bases_to_activate)
             with Engine.prove(rb_name, goal, context, goal_args) as it:
                 for prototype_plan in it:
                     final = {}
-                    print "got: %s%s" % \
-                          (goal, tuple(arg.as_data(context, True, final)
-                                       for arg in goal_args))
+                    result = tuple(
+                        arg.as_data(context, True, final)
+                        for arg in goal_args
+                    )
+                    print(f"got: {goal}{result}")
                     if not prototype_plan:
-                        print "no plan returned"
+                        print("no plan returned")
                     else:
                         plan = prototype_plan.create_plan(final)
                         fn_to_run_plan(plan_globals, locals())
-        except:
+        except Exception:
             krb_traceback.print_exc(100)
-

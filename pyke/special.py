@@ -57,14 +57,14 @@ class special_both(special_fn):
         return self.lookup(bindings, pat_context, patterns)
 
 class claim_goal(special_fn):
-    r'''
+    '''
         >>> class stub(object):
         ...     def add_fn(self, fn): pass
         >>> cg = claim_goal(stub())
         >>> mgr = cg.prove(None, None, None)
         >>> gen = iter(mgr.__enter__())
-        >>> gen.next()
-        >>> gen.next()
+        >>> next(gen)
+        >>> next(gen)
         Traceback (most recent call last):
             ...
         StopProof
@@ -85,7 +85,7 @@ class claim_goal(special_fn):
         return contextlib.closing(gen())
 
 def run_cmd(pat_context, cmd_pat, cwd_pat=None, stdin_pat=None):
-    r'''
+    '''
         >>> from pyke import pattern
         >>> run_cmd(None, pattern.pattern_literal(('true',)))
         (0, '', '')
@@ -97,28 +97,28 @@ def run_cmd(pat_context, cmd_pat, cwd_pat=None, stdin_pat=None):
         >>> err
         ''
         >>> import os
-        >>> cwd = os.getcwd() + '\n'
+        >>> cwd = os.getcwd() + '\\n'
         >>> out == cwd
         True
         >>> run_cmd(None, pattern.pattern_literal(('pwd',)),
         ...         pattern.pattern_literal('/home/bruce'))
-        (0, '/home/bruce\n', '')
+        (0, '/home/bruce\\n', '')
     '''
-    stdin = None if stdin_pat is None \
-                 else stdin_pat.as_data(pat_context)
-    process = subprocess.Popen(cmd_pat.as_data(pat_context),
-                               bufsize=-1,
-                               universal_newlines=True,
-                               stdin=subprocess.PIPE,
-                               stdout=subprocess.PIPE,
-                               stderr=subprocess.PIPE,
-                               cwd= None if cwd_pat is None
-                                         else cwd_pat.as_data(pat_context))
+    stdin = None if stdin_pat is None else stdin_pat.as_data(pat_context)
+    process = subprocess.Popen(
+        cmd_pat.as_data(pat_context),
+        bufsize=-1,
+        universal_newlines=True,
+        stdin=subprocess.PIPE,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        cwd=None if cwd_pat is None else cwd_pat.as_data(pat_context)
+    )
     out, err = process.communicate(stdin)
     return process.returncode, out, err
 
 class check_command(special_both):
-    r'''
+    '''
         >>> from pyke import pattern, contexts
         >>> class stub(object):
         ...     def add_fn(self, fn): pass
@@ -126,9 +126,9 @@ class check_command(special_both):
         >>> ctxt = contexts.simple_context()
         >>> mgr = cc.lookup(ctxt, ctxt, (pattern.pattern_literal(('true',)),))
         >>> gen = iter(mgr.__enter__())
-        >>> gen.next()
+        >>> next(gen)
         >>> ctxt.dump()
-        >>> gen.next()
+        >>> next(gen)
         Traceback (most recent call last):
             ...
         StopIteration
@@ -136,7 +136,7 @@ class check_command(special_both):
         >>> mgr.__exit__(None, None, None)
         >>> mgr = cc.lookup(ctxt, ctxt, (pattern.pattern_literal(('false',)),))
         >>> gen = iter(mgr.__enter__())
-        >>> gen.next()
+        >>> next(gen)
         Traceback (most recent call last):
             ...
         StopIteration
@@ -144,9 +144,9 @@ class check_command(special_both):
         >>> mgr.__exit__(None, None, None)
         >>> mgr = cc.prove(ctxt, ctxt, (pattern.pattern_literal(('true',)),))
         >>> gen = iter(mgr.__enter__())
-        >>> gen.next()
+        >>> next(gen)
         >>> ctxt.dump()
-        >>> gen.next()
+        >>> next(gen)
         Traceback (most recent call last):
             ...
         StopIteration
@@ -157,45 +157,53 @@ class check_command(special_both):
         super(check_command, self).__init__(special_base, 'check_command')
 
     def lookup(self, bindings, pat_context, patterns):
-        if len(patterns) < 1: return knowledge_base.Gen_empty
-        retcode, out, err = run_cmd(pat_context, patterns[0],
-                                    patterns[1] if len(patterns) > 1
-                                                else None,
-                                    patterns[2] if len(patterns) > 2
-                                                else None)
-        if retcode: return knowledge_base.Gen_empty
+        if len(patterns) < 1:
+            return knowledge_base.Gen_empty
+        retcode, out, err = run_cmd(
+            pat_context,
+            patterns[0],
+            patterns[1] if len(patterns) > 1 else None,
+            patterns[2] if len(patterns) > 2 else None
+        )
+        if retcode:
+            return knowledge_base.Gen_empty
         return knowledge_base.Gen_once
 
 class command(special_both):
-    r'''
+    '''
         >>> from pyke import pattern, contexts
         >>> class stub(object):
         ...     def add_fn(self, fn): pass
         >>> c = command(stub())
         >>> ctxt = contexts.simple_context()
-        >>> mgr = c.lookup(ctxt, ctxt,
-        ...                (contexts.variable('ans'),
-        ...                 pattern.pattern_literal(('echo', 'hi'))))
+        >>> mgr = c.lookup(
+        ...     ctxt, ctxt,
+        ...     (contexts.variable('ans'), pattern.pattern_literal(('echo', 'hi')))
+        ... )
         >>> gen = iter(mgr.__enter__())
-        >>> gen.next()
+        >>> next(gen)
         >>> ctxt.dump()
         ans: ('hi',)
-        >>> gen.next()
+        >>> next(gen)
         Traceback (most recent call last):
             ...
         StopIteration
         >>> ctxt.dump()
         >>> mgr.__exit__(None, None, None)
-        >>> mgr = c.lookup(ctxt, ctxt,
-        ...                (contexts.variable('ans'),
-        ...                 pattern.pattern_literal(('cat',)),
-        ...                 pattern.pattern_literal(None),
-        ...                 pattern.pattern_literal('line1\nline2\nline3\n')))
+        >>> mgr = c.lookup(
+        ...     ctxt, ctxt,
+        ...     (
+        ...         contexts.variable('ans'),
+        ...         pattern.pattern_literal(('cat',)),
+        ...         pattern.pattern_literal(None),
+        ...         pattern.pattern_literal('line1\\nline2\\nline3\\n')
+        ...     )
+        ... )
         >>> gen = iter(mgr.__enter__())
-        >>> gen.next()
+        >>> next(gen)
         >>> ctxt.dump()
         ans: ('line1', 'line2', 'line3')
-        >>> gen.next()
+        >>> next(gen)
         Traceback (most recent call last):
             ...
         StopIteration
@@ -206,16 +214,19 @@ class command(special_both):
         super(command, self).__init__(special_base, 'command')
 
     def lookup(self, bindings, pat_context, patterns):
-        if len(patterns) < 2: return knowledge_base.Gen_empty
-        retcode, out, err = run_cmd(pat_context, patterns[1],
-                                    patterns[2] if len(patterns) > 2
-                                                else None,
-                                    patterns[3] if len(patterns) > 3
-                                                else None)
+        if len(patterns) < 2:
+            return knowledge_base.Gen_empty
+        retcode, out, err = run_cmd(
+            pat_context,
+            patterns[1],
+            patterns[2] if len(patterns) > 2 else None,
+            patterns[3] if len(patterns) > 3 else None
+        )
         if retcode != 0:
             raise subprocess.CalledProcessError(
-                                retcode,
-                                ' '.join(patterns[1].as_data(pat_context)))
+                retcode,
+                ' '.join(patterns[1].as_data(pat_context))
+            )
         def gen():
             mark = bindings.mark(True)
             try:
@@ -231,21 +242,22 @@ class command(special_both):
         return contextlib.closing(gen())
 
 class general_command(special_both):
-    r'''
+    '''
         >>> from pyke import pattern, contexts
         >>> class stub(object):
         ...     def add_fn(self, fn): pass
         >>> gc = general_command(stub())
         >>> ctxt = contexts.simple_context()
         >>> ctxt.dump()
-        >>> mgr = gc.lookup(ctxt, ctxt,
-        ...                 (contexts.variable('ans'),
-        ...                  pattern.pattern_literal(('echo', 'hi'))))
+        >>> mgr = gc.lookup(
+        ...     ctxt, ctxt,
+        ...     (contexts.variable('ans'), pattern.pattern_literal(('echo', 'hi')))
+        ... )
         >>> gen = iter(mgr.__enter__())
-        >>> gen.next()
+        >>> next(gen)
         >>> ctxt.dump()
         ans: (0, 'hi\n', '')
-        >>> gen.next()
+        >>> next(gen)
         Traceback (most recent call last):
             ...
         StopIteration
@@ -256,10 +268,14 @@ class general_command(special_both):
         super(general_command, self).__init__(special_base, 'general_command')
 
     def lookup(self, bindings, pat_context, patterns):
-        if len(patterns) < 2: return knowledge_base.Gen_empty
-        ans = run_cmd(pat_context, patterns[1],
-                      patterns[2] if len(patterns) > 2 else None,
-                      patterns[3] if len(patterns) > 3 else None)
+        if len(patterns) < 2:
+            return knowledge_base.Gen_empty
+        ans = run_cmd(
+            pat_context,
+            patterns[1],
+            patterns[2] if len(patterns) > 2 else None,
+            patterns[3] if len(patterns) > 3 else None
+        )
 
         def gen():
             mark = bindings.mark(True)
@@ -280,4 +296,3 @@ def create_for(engine):
     check_command(special_base)
     command(special_base)
     general_command(special_base)
-

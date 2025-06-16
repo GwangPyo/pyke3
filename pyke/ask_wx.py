@@ -21,7 +21,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-r'''
+'''
     A "match" here is one of:
         - an instance of qa_helpers.regexp
             - msg (for error message)
@@ -40,14 +40,16 @@ r'''
 '''
 
 import sys
+
 if __name__ != "__main__" \
-   and ('__main__' not in sys.modules
-        or 'doctest' not in sys.modules['__main__'].__file__):
+        and ('__main__' not in sys.modules
+             or 'doctest' not in sys.modules['__main__'].__file__):
     # So we don't screw up doctest runs on boxes that don't have wxPython
     # installed...
     import wx
 import itertools
 from pyke import qa_helpers
+
 
 def review_ans(dlg, ans, review=None):
     if review:
@@ -61,16 +63,18 @@ def review_ans(dlg, ans, review=None):
 
         def matches(ans, test):
             if isinstance(ans, (tuple, list)):
-                return any(itertools.imap(lambda elem: matches2(elem, test),
-                                          ans))
+                return any(map(lambda elem: matches2(elem, test),
+                               ans))
             return matches2(ans, test)
+
         msg = u'\n\n'.join(review_str for review_test, review_str in review
-                                       if matches(ans, review_test))
+                           if matches(ans, review_test))
         if msg:
             dlg2 = wx.MessageDialog(dlg, msg, 'Answer Information',
                                     wx.OK | wx.ICON_INFORMATION)
             dlg2.ShowModal()
             dlg2.Destroy()
+
 
 def get_answer(question, title, conv_fn=None, test=None, review=None):
     dlg = wx.TextEntryDialog(None, question, title, u'',
@@ -84,10 +88,10 @@ def get_answer(question, title, conv_fn=None, test=None, review=None):
             if conv_fn: ans = conv_fn(ans)
             if test: ans = qa_helpers.match(ans, test)
             break
-        except ValueError, e:
+        except ValueError as e:
             err = wx.MessageDialog(dlg,
                                    u"Answer should be %s\nGot %s" %
-                                       (e.message, repr(ans)),
+                                   (e.message, repr(ans)),
                                    u"Error Notification",
                                    wx.OK | wx.ICON_ERROR)
             err.ShowModal()
@@ -96,6 +100,7 @@ def get_answer(question, title, conv_fn=None, test=None, review=None):
     review_ans(dlg, ans, review)
     dlg.Destroy()
     return ans
+
 
 def ask_yn(question, review=None):
     dlg = wx.MessageDialog(None, question, 'User Question',
@@ -109,6 +114,7 @@ def ask_yn(question, review=None):
     dlg.Destroy()
     return ans
 
+
 def ask_integer(question, match=None, review=None):
     return get_answer(question,
                       qa_helpers.match_prompt(match, int, "Enter Integer %s",
@@ -116,6 +122,7 @@ def ask_integer(question, match=None, review=None):
                       conv_fn=qa_helpers.to_int,
                       test=match,
                       review=review)
+
 
 def ask_float(question, match=None, review=None):
     return get_answer(question,
@@ -125,6 +132,7 @@ def ask_float(question, match=None, review=None):
                       test=match,
                       review=review)
 
+
 def ask_number(question, match=None, review=None):
     return get_answer(question,
                       qa_helpers.match_prompt(match, int, "Enter Number %s",
@@ -133,12 +141,14 @@ def ask_number(question, match=None, review=None):
                       test=match,
                       review=review)
 
+
 def ask_string(question, match=None, review=None):
     return get_answer(question,
                       qa_helpers.match_prompt(match, str, "Enter %s",
                                               'User Question'),
                       test=match,
                       review=review)
+
 
 def ask_select_1(question, alternatives, review=None):
     dlg = wx.SingleChoiceDialog(None, question, u'User Question',
@@ -149,15 +159,14 @@ def ask_select_1(question, alternatives, review=None):
     if status != wx.ID_OK:
         raise AssertionError("dlg.ShowModal failed with %d" % status)
     selection = dlg.GetSelection()
-    #print 'Got selection: %s' % str(selection)
+    # print 'Got selection: %s' % str(selection)
     ans = alternatives[selection][0]
     review_ans(dlg, ans, review)
     dlg.Destroy()
     return ans
 
+
 def ask_select_n(question, alternatives, review=None):
-    #dlg = wx.lib.dialogs.MultiChoiceDialog(None, question, u'User Question',
-    #                                       [msg for tag, msg in alternatives])
     dlg = wx.MultiChoiceDialog(None, question, u'User Question',
                                [msg for tag, msg in alternatives],
                                wx.DEFAULT_DIALOG_STYLE | wx.RESIZE_BORDER |
@@ -165,11 +174,9 @@ def ask_select_n(question, alternatives, review=None):
     status = dlg.ShowModal()
     if status != wx.ID_OK:
         raise AssertionError("dlg.ShowModal failed with %d" % status)
-    #selections = dlg.GetValue()
     selections = dlg.GetSelections()
-    #print 'Got selections: %s' % str(selections)
+    # print 'Got selections: %s' % str(selections)
     ans = tuple(alternatives[i][0] for i in selections)
     review_ans(dlg, ans, review)
     dlg.Destroy()
     return ans
-

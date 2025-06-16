@@ -612,8 +612,10 @@ def parse_goal(this_module, s, check_tables = False, debug = 0):
     goal_mode = True
     pattern_vars = []
     #parser.restart()
-    return parser.parse('check ' + s, lexer=scanner.lexer, tracking=True,
+    ret = parser.parse('check ' + s, lexer=scanner.lexer, tracking=True,
                         debug=debug)
+
+    return ret
 
 def run(this_module, filename='TEST/krbparse_test.krb'):
     r""" Used for testing.

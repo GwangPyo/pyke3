@@ -21,7 +21,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-r'''
+'''
     A "match" here is one of:
         - an instance of qa_helpers.regexp
             - msg (for error message)
@@ -42,6 +42,7 @@ r'''
 import sys
 import itertools
 from pyke import qa_helpers
+from io import StringIO
 
 encoding = 'UTF-8'
 
@@ -50,8 +51,8 @@ yes_match = ('y', 'yes', 't', 'true')
 no_match = ('n', 'no', 'f', 'false')
 
 def get_answer(question, match_prompt, conv_fn=None, test=None, review=None):
-    r'''
-        >>> from StringIO import StringIO
+    '''
+        >>> from io import StringIO
         >>> sys.stdin = StringIO('4\n')
         >>> get_answer(u'enter number?', '[0-10]', qa_helpers.to_int,
         ...            slice(3,5))
@@ -81,19 +82,18 @@ def get_answer(question, match_prompt, conv_fn=None, test=None, review=None):
         question += ' '
     question += match_prompt
     if match_prompt and not match_prompt[-1].isspace(): question += ' '
-    if encoding: question = question.encode(encoding)
+    if encoding: question = question.encode(encoding).decode(encoding)
     while True:
-        print "_" * 78
-        ans = raw_input(question)
+        print("_" * 78)
+        ans = input(question)
         try:
-            if encoding and sys.version_info[0] < 3: ans = ans.decode(encoding)
             if conv_fn: ans = conv_fn(ans)
             if test: ans = qa_helpers.match(ans, test)
             break
-        except ValueError, e:
-            print "answer should be %s, got %s" % (str(e), repr(ans))
-            print
-            print "Try Again:"
+        except ValueError as e:
+            print("answer should be %s, got %s" % (str(e), repr(ans)))
+            print()
+            print("Try Again:")
     if review:
         def matches2(ans, test):
             try:
@@ -104,18 +104,17 @@ def get_answer(question, match_prompt, conv_fn=None, test=None, review=None):
 
         def matches(ans, test):
             if isinstance(ans, (tuple, list)):
-                return any(itertools.imap(lambda elem: matches2(elem, test),
-                                          ans))
+                return any(map(lambda elem: matches2(elem, test), ans))
             return matches2(ans, test)
 
         for review_test, review_str in review:
             if matches(ans, review_test):
-                print review_str
+                print(review_str)
     return ans
 
 def ask_yn(question, review=None):
-    r'''
-        >>> from StringIO import StringIO
+    '''
+        >>> from io import StringIO
         >>> sys.stdin = StringIO('yes\n')
         >>> ask_yn(u'got it?')
         ______________________________________________________________________________
@@ -131,8 +130,8 @@ def ask_yn(question, review=None):
                       review=review)
 
 def ask_integer(question, match=None, review=None):
-    r'''
-        >>> from StringIO import StringIO
+    '''
+        >>> from io import StringIO
         >>> sys.stdin = StringIO('4\n')
         >>> ask_integer(u'enter number?')
         ______________________________________________________________________________
@@ -145,8 +144,8 @@ def ask_integer(question, match=None, review=None):
                       review=review)
 
 def ask_float(question, match=None, review=None):
-    r'''
-        >>> from StringIO import StringIO
+    '''
+        >>> from io import StringIO
         >>> sys.stdin = StringIO('4\n')
         >>> ask_float(u'enter number?')
         ______________________________________________________________________________
@@ -159,8 +158,8 @@ def ask_float(question, match=None, review=None):
                       review=review)
 
 def ask_number(question, match=None, review=None):
-    r'''
-        >>> from StringIO import StringIO
+    '''
+        >>> from io import StringIO
         >>> sys.stdin = StringIO('4\n')
         >>> ask_number(u'enter number?')
         ______________________________________________________________________________
@@ -173,8 +172,8 @@ def ask_number(question, match=None, review=None):
                       review=review)
 
 def ask_string(question, match=None, review=None):
-    r'''
-        >>> from StringIO import StringIO
+    '''
+        >>> from io import StringIO
         >>> sys.stdin = StringIO('yes\n')
         >>> ask_string(u'enter string?')
         ______________________________________________________________________________
@@ -186,8 +185,8 @@ def ask_string(question, match=None, review=None):
                       review=review)
 
 def ask_select_1(question, alternatives, review=None):
-    r'''
-        >>> from StringIO import StringIO
+    '''
+        >>> from io import StringIO
         >>> sys.stdin = StringIO('2\n')
         >>> ask_select_1(u'which one?',
         ...              (('a', u'first one'), ('b', u'second one'),
@@ -210,8 +209,8 @@ def ask_select_1(question, alternatives, review=None):
     return alternatives[i-1][0]
 
 def ask_select_n(question, alternatives, review=None):
-    r'''
-        >>> from StringIO import StringIO
+    '''
+        >>> from io import StringIO
         >>> sys.stdin = StringIO('1,3\n')
         >>> ask_select_n(u'which one?',
         ...              (('a', u'first one'), ('b', u'second one'),
@@ -235,4 +234,3 @@ def ask_select_n(question, alternatives, review=None):
                                          test=match),
                          review=review)
     return tuple(alternatives[i-1][0] for i in i_tuple)
-

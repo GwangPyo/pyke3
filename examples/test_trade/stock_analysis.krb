@@ -1,0 +1,84 @@
+is_fundamental_good
+    use is_fundamental_good($ticker)
+    when
+        stock_analysis.fundamental_positive($ticker, $pos1)
+        stock_analysis.fundamental_positive($ticker, $pos2)
+        stock_analysis.fundamental_positive($ticker, $pos3)
+        check $pos1 != $pos2
+        check $pos2 != $pos3
+
+is_fundamental_bad
+    use is_fundamental_bad($ticker)
+    when
+        stock_analysis.fundamental_negative($ticker, $neg1)
+        stock_analysis.fundamental_negative($ticker, $neg2)
+        check $neg1 != $neg2
+
+is_technical_bullish
+    use is_technical_bullish($ticker)
+    when
+        stock_analysis.technical_indicator($ticker, $indicator)
+        python 'uptrend' in $indicator.lower() or 'positive' in $indicator.lower() or 'strong' in $indicator.lower()
+
+is_technical_bearish
+    use is_technical_bearish($ticker)
+    when
+        stock_analysis.technical_indicator($ticker, $indicator)
+        python 'bearish' in $indicator.lower() or 'decline' in $indicator.lower() or 'weak' in $indicator.lower()
+
+is_news_positive
+    use is_news_positive($ticker)
+    when
+        stock_analysis.news_positive($ticker, $news)
+        python 'strong' in $news.lower() or 'profitable' in $news.lower()
+
+is_news_negative
+    use is_news_negative($ticker)
+    when
+        stock_analysis.news_negative($ticker, $news)
+        python 'decline' in $news.lower() or 'concern' in $news.lower() or 'drop' in $news.lower()
+
+is_market_bad
+    use is_market_bad()
+    when
+        stock_analysis.market_condition('market_cons_recession_fears')
+
+buy_a_lot_rule
+    use investment_decision($ticker, 'buy_a_lot')
+    when
+        is_fundamental_good($ticker)
+        is_technical_bullish($ticker)
+        is_news_positive($ticker)
+
+buy_rule
+    use investment_decision($ticker, 'buy')
+    when
+        is_fundamental_good($ticker)
+        is_technical_bullish($ticker)
+
+buy_little_rule
+    use investment_decision($ticker, 'buy_little')
+    when
+        is_fundamental_good($ticker)
+
+sell_rule
+    use investment_decision($ticker, 'sell')
+    when
+        is_fundamental_bad($ticker)
+        is_technical_bearish($ticker)
+
+sell_little_rule
+    use investment_decision($ticker, 'sell_little')
+    when
+        is_technical_bearish($ticker)
+        is_news_negative($ticker)
+
+hold_market_bad_rule
+    use investment_decision($ticker, 'hold')
+    when
+        is_market_bad()
+
+hold_default_rule
+    use investment_decision($ticker, 'hold')
+    when
+        stock_analysis.technical_indicator($ticker, $any_indicator)

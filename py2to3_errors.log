@@ -1,0 +1,627 @@
+    !! 2to3 failed on ./pyke/knowledge_engine.py
+    !! 2to3 failed on ./Test/test.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: No files need to be modified.
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: No files need to be modified.
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./doc/source/bin/gather_links.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./doc/source/bin/get_links.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: No files need to be modified.
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./examples/family_relations/driver.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./examples/findall/driver.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./examples/forall/driver.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./examples/knapsack/driver.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./examples/learn_pyke/driver.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./examples/notany/driver.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./examples/sqlgen/driver.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./examples/sqlgen/driver_sqlite3.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./examples/sqlgen/load_mysql_schema.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./examples/sqlgen/load_sqlite3_schema.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: No files need to be modified.
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./examples/towers_of_hanoi/driver.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./examples/web_framework/preforked_server.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./examples/web_framework/profile_server.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./examples/web_framework/simple_server.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that need to be modified:
+RefactoringTool: ./examples/web_framework/test.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that need to be modified:
+RefactoringTool: ./examples/web_framework/TurboGears2/tg2movie/controllers/root.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that need to be modified:
+RefactoringTool: ./examples/web_framework/TurboGears2/tg2movie/model/__init__.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./examples/web_framework/wsgi_app.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: No files need to be modified.
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./experimental/cache_args.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./experimental/metaclass.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./experimental/multi_test.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: No files need to be modified.
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./pyke/ask_tty.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./pyke/ask_wx.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./pyke/bc_rule.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that need to be modified:
+RefactoringTool: ./pyke/condensedPrint.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./pyke/contexts.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./pyke/fact_base.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./pyke/fc_rule.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./pyke/goal.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that need to be modified:
+RefactoringTool: ./pyke/immutable_dict.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./pyke/knowledge_base.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Can't parse ./pyke/knowledge_engine.py: ParseError: bad input: type=22, value='=', context=('', (93, 65))
+RefactoringTool: No files need to be modified.
+RefactoringTool: There was 1 error:
+RefactoringTool: Can't parse ./pyke/knowledge_engine.py: ParseError: bad input: type=22, value='=', context=('', (93, 65))
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./pyke/krb_compiler/compiler_bc.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that need to be modified:
+RefactoringTool: ./pyke/krb_compiler/helpers.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./pyke/krb_compiler/kfbparser.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./pyke/krb_compiler/kfbparser_tables.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./pyke/krb_compiler/kqb_parser.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./pyke/krb_compiler/krbparser.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./pyke/krb_compiler/krbparser_tables.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./pyke/krb_compiler/ply/lex.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./pyke/krb_compiler/ply/yacc.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that need to be modified:
+RefactoringTool: ./pyke/krb_compiler/ply/__init__.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that need to be modified:
+RefactoringTool: ./pyke/krb_compiler/scanner.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that need to be modified:
+RefactoringTool: ./pyke/krb_compiler/scanner_tables.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./pyke/krb_compiler/__init__.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that need to be modified:
+RefactoringTool: ./pyke/krb_traceback.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that need to be modified:
+RefactoringTool: ./pyke/pattern.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./pyke/qa_helpers.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that need to be modified:
+RefactoringTool: ./pyke/question_base.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that need to be modified:
+RefactoringTool: ./pyke/rule_base.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./pyke/special.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that need to be modified:
+RefactoringTool: ./pyke/target_pkg.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./pyke/test.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that need to be modified:
+RefactoringTool: ./pyke/unique.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that need to be modified:
+RefactoringTool: ./pyke/user_question.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that need to be modified:
+RefactoringTool: ./pyke/__init__.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that need to be modified:
+RefactoringTool: ./setup.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./Test/backup/driver.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: No files need to be modified.
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that need to be modified:
+RefactoringTool: ./Test/CanNotProve/test.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: No files need to be modified.
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that need to be modified:
+RefactoringTool: ./Test/examples/testall.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: No files need to be modified.
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that need to be modified:
+RefactoringTool: ./Test/first/family.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: No files need to be modified.
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that need to be modified:
+RefactoringTool: ./Test/Misc/generator_close.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./Test/Misc/generator_exception_propagation.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that were modified:
+RefactoringTool: ./Test/Misc/generator_test.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Files that need to be modified:
+RefactoringTool: ./Test/pyketest.py
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Can't parse ./Test/test.py: ParseError: bad input: type=22, value='=', context=('', (71, 39))
+RefactoringTool: No files need to be modified.
+RefactoringTool: There was 1 error:
+RefactoringTool: Can't parse ./Test/test.py: ParseError: bad input: type=22, value='=', context=('', (71, 39))
+/home/yoo/miniconda/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: No files need to be modified.

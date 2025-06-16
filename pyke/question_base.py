@@ -21,17 +21,16 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-
 import contextlib
 from pyke import unique
 from pyke import knowledge_base
 
 class question_base(knowledge_base.knowledge_base):
-    r'''
+    '''
         Each instance keeps track of a related set of questions.
     '''
     def __init__(self, name):
-        r'''
+        '''
             This is only used by the compiler, so only creates an instance
             suitable for pickling.
 
@@ -43,17 +42,17 @@ class question_base(knowledge_base.knowledge_base):
     def add_question(self, question):
         name = question.name
         if name in self.entity_lists:
-            raise AssertionError("question_base %s: duplicate question, %s" %
-                                    (self.name, name))
+            raise AssertionError(f"question_base {self.name}: duplicate question, {name}")
         self.entity_lists[name] = question
         question.set_knowledge_base(self)
 
     def get_ask_module(self):
-        if hasattr(self, 'ask_module'): return self.ask_module
+        if hasattr(self, 'ask_module'):
+            return self.ask_module
         return self.engine.get_ask_module()
 
 class question(knowledge_base.knowledge_entity_list):
-    r'''
+    '''
         This represents one question in a question_base.  It takes care of
         lookup parameters and caching and delegates the work of actually
         asking the user a question to the user_question object by calling its
@@ -68,48 +67,49 @@ class question(knowledge_base.knowledge_entity_list):
         try:
             self.answer_param_position = list(params).index(answer_param)
         except ValueError:
-            raise ValueError("question %s: answer parameter, %s, "
-                             "not in params list: %s" % (answer_param, params))
-        self.input_param_positions = \
-            tuple(filter(lambda i: i != self.answer_param_position,
-                         range(len(self.params))))
+            raise ValueError(f"question {self.name}: answer parameter, {answer_param}, "
+                             f"not in params list: {params}")
+        self.input_param_positions = tuple(
+            i for i in range(len(self.params)) if i != self.answer_param_position
+        )
         self.user_question = user_question
         self.cache = {}
 
     def __repr__(self):
-        return "<question %s(%s): $%s = %s>" % \
-               (self.name, ', '.join('$' + p for p in self.params),
-                self.answer_param, repr(self.user_question))
+        return (f"<question {self.name}("
+                f"{', '.join('$' + p for p in self.params)}): "
+                f"${self.answer_param} = {repr(self.user_question)}>")
 
     def set_knowledge_base(self, question_base):
         self.knowledge_base = question_base
         self.user_question.set_question_base(question_base)
 
     def lookup(self, bindings, pat_context, patterns):
-        input_params = tuple((self.params[i],
-                                unicode(patterns[i].as_data(pat_context)))
-                             for i in self.input_param_positions)
+        input_params = tuple(
+            (self.params[i], str(patterns[i].as_data(pat_context)))
+            for i in self.input_param_positions
+        )
         format_params = dict(input_params)
         ans = self.cache.get(input_params, self.not_found)
         if ans is self.not_found:
-            ans = self.cache[input_params] = \
-                self.user_question.ask(format_params)
+            ans = self.cache[input_params] = self.user_question.ask(format_params)
 
         def gen():
             mark = bindings.mark(True)
             end_done = False
             try:
-                if patterns[self.answer_param_position] \
-                       .match_data(bindings, pat_context, ans):
+                if patterns[self.answer_param_position].match_data(
+                    bindings, pat_context, ans
+                ):
                     bindings.end_save_all_undo()
                     end_done = True
                     yield
             finally:
-                if not end_done: bindings.end_save_all_undo()
+                if not end_done:
+                    bindings.end_save_all_undo()
                 bindings.undo_to_mark(mark)
 
         return contextlib.closing(gen())
 
     def reset(self):
         self.cache.clear()
-

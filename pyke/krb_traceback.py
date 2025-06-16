@@ -26,9 +26,11 @@ import traceback
 import os.path
 import sys
 
+
 def print_tb(traceback, limit=None, file=None):
     if file is None: file = sys.stderr
     for line in format_list(extract_tb(traceback, limit)): file.write(line)
+
 
 def print_exception(type, value, traceback, limit=None, file=None):
     if file is None: file = sys.stderr
@@ -39,21 +41,26 @@ def print_exception(type, value, traceback, limit=None, file=None):
     file.write(lines[0])
     for line in lines[1:]: file.write(' ' + line)
 
+
 def print_exc(limit=None, file=None):
     type, value, traceback = sys.exc_info()
     print_exception(type, value, traceback, limit, file)
+
 
 def format_exc(limit=None):
     type, value, traceback = sys.exc_info()
     return format_exception(type, value, traceback, limit)
 
+
 def print_last(limit=None, file=None):
     print_exception(sys.last_type, sys.last_value, sys.last_traceback,
                     limit, file)
 
+
 def print_stack(f=None, limit=None, file=None):
     if file is None: file = sys.stderr
     for line in format_list(extract_stack(f, limit)): file.write(line)
+
 
 def extract_tb(tb, limit=None):
     ans = convert_tb(traceback.extract_tb(tb))
@@ -61,15 +68,18 @@ def extract_tb(tb, limit=None):
         return ans[len(ans) - limit:]
     return ans
 
+
 def extract_stack(f=None, limit=None):
     ans = convert_tb(traceback.extract_stack(f))
     if limit is not None and len(ans) > limit:
         return ans[len(ans) - limit:]
     return ans
 
+
 format_list = traceback.format_list
 
 format_exception_only = traceback.format_exception_only
+
 
 def format_exception(type, value, traceback, limit=None):
     ans = []
@@ -81,15 +91,19 @@ def format_exception(type, value, traceback, limit=None):
     for line in lines[1:]: ans.append(' ' + line)
     return ''.join(ans)
 
+
 def format_tb(tb, limit=None):
     return format_list(extract_tb(tb, limit))
+
 
 def format_stack(f=None, limit=None):
     return format_list(extract_stack(f, limit))
 
+
 def convert_lineno(module, lineno):
     for (py_start, py_end), (krb_start, krb_end) in module.Krb_lineno_map:
         if py_start <= lineno <= py_end: return krb_start
+
 
 def convert_tb(extracted_tb):
     '''
@@ -112,12 +126,14 @@ def convert_tb(extracted_tb):
                             batch = []
                             krb_filename = \
                                 os.path.normpath(
-                                  os.path.join(os.path.dirname(module.__file__),
-                                               module.Krb_filename))
+                                    os.path.join(os.path.dirname(module.__file__),
+                                                 module.Krb_filename))
                             linecache.checkcache(krb_filename)
                             line = linecache.getline(krb_filename, krb_lineno)
-                            if line: line = line.strip()
-                            else: line = None
+                            if line:
+                                line = line.strip()
+                            else:
+                                line = None
                             ans.append((krb_filename, krb_lineno, functionname,
                                         line))
                             info = None
@@ -130,6 +146,6 @@ def convert_tb(extracted_tb):
                 sep_index = pathname.find(os.path.sep)
                 if sep_index < 0: break
                 pathname = pathname[sep_index + 1:]
-        if info: batch.append(info)
+        if info:
+            batch.append(info)
     return ans + batch
-

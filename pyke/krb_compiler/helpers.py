@@ -70,7 +70,7 @@ def goal(rb_name, rule_name, goal_info, pred_plan_lines, python_lines):
         "try:",
         ("INDENT", 2),
         ("STARTING_LINENO", start_lineno),
-        "if all(itertools.imap(lambda pat, arg:",
+        "if all(map(lambda pat, arg:",
         ("INDENT", 2),
         ("INDENT", 20),
         ("INDENT", 2),
